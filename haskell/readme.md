@@ -1,0 +1,1 @@
+This is Haskell related questions and Solutions I gave them.
