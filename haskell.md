@@ -1,1 +1,1 @@
-This is Haskell programming
+This is Haskell functional programming
