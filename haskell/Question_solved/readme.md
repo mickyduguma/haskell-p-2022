@@ -1,0 +1,1 @@
+This is haskell examples and questions I faced while studying Haskell.
