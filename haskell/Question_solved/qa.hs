@@ -26,4 +26,14 @@
         | bmical weight height  <= 30.0 = "You are overweight "
         | otherwise = "you are obese"
 
+-- Question: takes an element and a count and returns the list which is that element repeated that many times
+    replicat 0 _     = []
+    replicat n given = given : replicat (n-1) given
+
+-- Multiple list using highorder functions
+    multList n [] = []
+    multList n (x:xs) = n*x : multList n xs
+    
+    tripleList = multList 3
+    doubleList = multList 2
 
