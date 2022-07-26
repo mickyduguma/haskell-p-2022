@@ -1,0 +1,4 @@
+-- Problem - construct an expression whose values is a given positive number
+-- Rules
+-- i. All the numbers including intermidiate results must be positive natural numbers
+-- ii. Each of the source numbers canbe used at most once when construction expression

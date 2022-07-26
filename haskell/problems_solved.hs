@@ -38,7 +38,7 @@
     validate :: Integer -> Bool
     validate n = (mod (sumDigits (doubleEveryOtherRev (toDigits n))) 10) == 0
 
-    -- problem: Implement insertion sort i. insert a number in a sorted list in a correct position
+    -- problem: i. insert a number in a sorted list in a correct position
     insert' :: Int -> [Int] -> [Int]
     insert' x [] = [x]
     insert' x (ix:ixx) = 
@@ -46,8 +46,17 @@
             x:ix:ixx
         else
             ix: insert' x ixx
-            
+--  problem: implement insertion sort 
     isort :: [Int] -> [Int]
     isort [] = []
     isort (i:is) = insert' i (isort is)
+
+    -- problem: Implement Merge 
+    merge' :: [Int] -> [Int] -> [Int]
+    merge' mx [] = mx
+    merge' [] ms = ms
+    merge' (mx:mxx) (ms:mss)=
+        if mx <= ms then 
+            mx: merge' mxx (ms:mss)
+        else ms: merge' (mx:mxx) mss
     
