@@ -37,3 +37,17 @@
 
     validate :: Integer -> Bool
     validate n = (mod (sumDigits (doubleEveryOtherRev (toDigits n))) 10) == 0
+
+    -- problem: Implement insertion sort i. insert a number in a sorted list in a correct position
+    insert' :: Int -> [Int] -> [Int]
+    insert' x [] = [x]
+    insert' x (ix:ixx) = 
+        if x<= ix then 
+            x:ix:ixx
+        else
+            ix: insert' x ixx
+            
+    isort :: [Int] -> [Int]
+    isort [] = []
+    isort (i:is) = insert' i (isort is)
+    

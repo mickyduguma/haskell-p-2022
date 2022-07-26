@@ -25,6 +25,17 @@
         | bmical weight height  <= 25.0 = "You are normal"
         | bmical weight height  <= 30.0 = "You are overweight "
         | otherwise = "you are obese"
+    -- bmicon:: Double->Double -> String 
+    -- bmicon weight height 
+    --     | bmi  <= 18.5 = "You are under weight because "
+    --     | bmi <= 25.0 = "You are normal"
+    --     | bmi <= 30.0 = "You are overweight "
+    --     | otherwise = "you are obese"
+    --    where bmi = weight / (height)^2
+
+--  a program to get list of weight and height pairs and gives list of bmi
+    listbmi :: [(Double,Double)]-> [Double]
+    listbmi lb = [ bmical bw bh | (bw, bh) <- lb]
 
 -- Question: takes an element and a count and returns the list which is that element repeated that many times
     replicat 0 _     = []
@@ -37,3 +48,17 @@
     tripleList = multList 3
     doubleList = multList 2
 
+--  take using recursion 
+    take' :: (Num a) => Int -> [a] -> [a]
+    take' num [] = []
+    take' num (t:txs)
+        | num <= 0 = []
+        | num > length txs + 1 = error "Not enought elements"
+        | otherwise = t : take' (num-1) txs
+--  implementation of zip function using recursion
+    zip' :: [a]-> [b] -> [(a,b)]
+    zip' _ [] = []
+    zip' [] _ = []
+    zip' (az:azip) (bz:bzip) = (az,bz): zip' azip bzip
+
+    
