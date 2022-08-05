@@ -38,6 +38,8 @@
     listbmi lb = [ bmical bw bh | (bw, bh) <- lb]
 
 -- Question: takes an element and a count and returns the list which is that element repeated that many times
+-- Implemenatation of replicate
+
     replicat 0 _     = []
     replicat n given = given : replicat (n-1) given
 
@@ -48,20 +50,21 @@
     tripleList = multList 3
     doubleList = multList 2
 
---  take using recursion 
+-- Implementation of- take using recursion 
     take' :: (Num a) => Int -> [a] -> [a]
     take' num [] = []
     take' num (t:txs)
         | num <= 0 = []
         | num > length txs + 1 = error "Not enought elements"
         | otherwise = t : take' (num-1) txs
+
 --  implementation of zip function using recursion
     zip' :: [a]-> [b] -> [(a,b)]
     zip' _ [] = []
     zip' [] _ = []
     zip' (az:azip) (bz:bzip) = (az,bz): zip' azip bzip
 
--- count number of strings found in a string
+-- count number of characters found in a string
     count :: Char -> String -> Int
     count x xs = length [x' | x' <- xs, x == x']
 
@@ -84,3 +87,10 @@
     positions :: Eq a => a -> [a] -> [Int]
     positions x xs = [i | (x',i) <- zip xs [0..n], x == x']
                     where n = length xs - 1
+
+--  List of all possible combinations in a list
+
+    possibleCombinations :: [a] -> [[a]]
+    possibleCombinations []     = [[]]
+    possibleCombinations (x:xs) = yss ++ map (x:) yss
+                where yss = possibleCombinations xs
