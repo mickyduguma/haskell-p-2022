@@ -1,3 +1,5 @@
+    import Data.Char
+
 -- Removing uppercase leters
     removeUppercase :: String -> String
     removeUppercase ru = [x | x <- ru, x `elem` ['a'..'z']]
@@ -64,6 +66,15 @@
     zip' [] _ = []
     zip' (az:azip) (bz:bzip) = (az,bz): zip' azip bzip
 
+    -- problem: Implement Merge 
+    merge' :: [Int] -> [Int] -> [Int]
+    merge' mx [] = mx
+    merge' [] ms = ms
+    merge' (mx:mxx) (ms:mss)=
+        if mx <= ms then 
+            mx: merge' mxx (ms:mss)
+        else ms: merge' (mx:mxx) mss    
+
 -- count number of characters found in a string
     count :: Char -> String -> Int
     count x xs = length [x' | x' <- xs, x == x']
@@ -94,3 +105,24 @@
     possibleCombinations []     = [[]]
     possibleCombinations (x:xs) = yss ++ map (x:) yss
                 where yss = possibleCombinations xs
+
+-- Problem : Implement cipher
+
+-- "If he had anything confidential to say, he wrote it in cipher, 
+-- that is, by so changing the order of the letters of the alphabet, 
+-- that not a word could be made out. If anyone wishes to decipher these,
+--  and get at their meaning, he must substitute the fourth letter of the alphabet,
+--  namely D, for A, and so with the others." —Suetonius, Life of Julius Caesar
+
+    let2int :: Char -> Int
+    let2int c = ord c - ord 'a'
+
+    int2let :: Int -> Char
+    int2let n = chr (ord 'a' + n)
+
+    shift :: Int -> Char -> Char
+    shift n c | isLower c = int2let ((let2int c + n) `mod` 26)
+            | otherwise = c
+
+    encode :: Int -> String -> String
+    encode n xs = [shift n x | x <- xs]
