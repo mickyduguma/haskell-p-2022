@@ -59,4 +59,11 @@
         if mx <= ms then 
             mx: merge' mxx (ms:mss)
         else ms: merge' (mx:mxx) mss
-    
+
+-- list of possible elements in a list
+
+
+    possibleCombinations :: [a] -> [[a]]
+    possibleCombinations []     = [[]]
+    possibleCombinations (x:xs) = yss ++ map (x:) yss
+                where yss = possibleCombinations xs

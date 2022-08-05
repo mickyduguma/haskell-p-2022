@@ -61,4 +61,26 @@
     zip' [] _ = []
     zip' (az:azip) (bz:bzip) = (az,bz): zip' azip bzip
 
-    
+-- count number of strings found in a string
+    count :: Char -> String -> Int
+    count x xs = length [x' | x' <- xs, x == x']
+
+
+--  Give frequency of lowercase lettes in a given String in a percent
+    lowercase :: String -> Int
+    lowercase xs = length [x | x <- xs, x >= 'a' && x <= 'z']   
+
+    percent :: Int -> Int -> Float
+    percent n m = (fromIntegral n / fromIntegral m) * 100
+
+    frequencyL :: String -> [Float]
+    frequencyL xs = [percent (count x xs) n | x <- ['a'..'z']]
+           where n = lowercase xs 
+
+
+--  Find the index of the given number in the list 
+--  If the number is found in the list more than 1, the function should 
+--  find all indexes in the list
+    positions :: Eq a => a -> [a] -> [Int]
+    positions x xs = [i | (x',i) <- zip xs [0..n], x == x']
+                    where n = length xs - 1
